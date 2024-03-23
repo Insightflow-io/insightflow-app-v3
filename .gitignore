@@ -33,3 +33,11 @@ yarn-error.log*
 /playwright/.cache/
 
 /.npm-only-allow
+
+# turbo
+.turbo
+
+.env
+.vercel
+.vscode
+.env*.local

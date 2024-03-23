@@ -1,3 +1,4 @@
+import { Message } from 'ai'
 import {
     ColumnType,
     Generated,
@@ -49,7 +50,7 @@ import {
   // You should not use the table schema interfaces directly. Instead, you should
   // use the `Selectable`, `Insertable` and `Updateable` wrappers. These wrappers
   // make sure that the correct types are used in each operation.
-  export type User = Selectable<UserTable>
+  //export type User = Selectable<UserTable>
   export type NewPerson = Insertable<UserTable>
   export type PersonUpdate = Updateable<UserTable>
   
@@ -63,3 +64,42 @@ import {
   export type File = Selectable<FileTable>
   export type NewFile = Insertable<FileTable>
   export type FileUpdate = Updateable<FileTable>
+
+
+
+export interface Chat extends Record<string, any> {
+  id: string
+  title: string
+  createdAt: Date
+  userId: string
+  path: string
+  messages: Message[]
+  sharePath?: string
+}
+
+export type ServerActionResult<Result> = Promise<
+  | Result
+  | {
+      error: string
+    }
+>
+
+export interface Session {
+  user: {
+    id: string
+    email: string
+  }
+}
+
+export interface AuthResult {
+  type: string
+  message: string
+}
+
+export interface User extends Record<string, any> {
+  id: string
+  email: string
+  org: string
+  password: string
+  salt: string
+}
